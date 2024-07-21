@@ -9,9 +9,7 @@ COPY ../modules/php /tmp/php
 # 编译 Nginx
 WORKDIR /tmp/php
 RUN ./buildconf --force
-RUN ./configure --prefix=/usr/local/php \
-    --with-config-file-path=/usr/local/php/etc \
-    --enable-fpm \
+RUN ./configure --enable-fpm \
     --with-iconv \
     --with-openssl \
     --with-pdo-mysql \
