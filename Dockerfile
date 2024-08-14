@@ -45,6 +45,7 @@ RUN pecl install smbclient apcu redis
 # 调整配置文件
 RUN mv /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf && mv /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
 RUN cp /tmp/php/php.ini-development /usr/local/php/etc/php.ini
+RUN sed -i '/;extension=shmop/a\extension=apcu.so\nextension=redis.so' "/usr/local/php/etc/php.ini"
 RUN sed -i 's/^user = .*/user = root/' /usr/local/php/etc/php-fpm.d/www.conf && sed -i 's/^group = .*/group = root/' /usr/local/php/etc/php-fpm.d/www.conf && sed -i 's/^listen = .*/listen = 9000/' /usr/local/php/etc/php-fpm.d/www.conf
 
 # 创建最终的镜像
